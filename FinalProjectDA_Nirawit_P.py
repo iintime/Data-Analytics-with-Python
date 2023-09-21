@@ -1,26 +1,18 @@
 from matplotlib import pyplot as plt
 import pandas as pd
 
-# Read the CSV file into a DataFrame
+# เปิดอ่านไฟล์ csv
 bigmac_df = pd.read_csv('big mac.csv', parse_dates=['date'])
 us_min_df = pd.read_csv('Minimum-Wage-USA.csv')
 thai_min_df = pd.read_csv('Minimum-Wage-Thai.csv')
 
 
-
-
-# Filter for big mac in Thailand
+# Filter ให้เหลือแค่ประเทศไทย
 thai_df = bigmac_df[bigmac_df['name'] == 'Thailand']
-# Filter for big mac in the United States
+# Filter ให้เหลือแค่อเมริกา
 us_df = bigmac_df[bigmac_df['name'] == 'United States']
 
-# merge
-
-
-
-
-
-# Create the first figure and chart (Thailand and USA)
+# สร้าง chart ราคา big mac
 fig1 = plt.figure(figsize=(6, 5))
 ax1 = fig1.add_subplot(2, 1, 1)
 ax2 = ax1.twinx()
@@ -32,7 +24,7 @@ ax1.set_ylabel('Local Price (THB)', color='#3776ab')
 ax2.set_ylabel('Local Price (USD)', color='red')
 ax1.set_title('Big Mac price : Thailand vs. USA')
 
-# Create the second chart (Thailand and USA minimum wage)
+# สร้าง chart รายได้ขั้นต่ำ
 ax3 = fig1.add_subplot(2, 1, 2)
 ax4 = ax3.twinx()
 thai_min_line = thai_min_df.plot(kind='line', x='DATE', y='perday', ax=ax3, label='THB_perday', color='#3776ab')
@@ -43,10 +35,6 @@ ax3.set_ylabel('THB_perday', color='#3776ab')
 ax4.set_ylabel('USD_perday', color='red')
 ax3.set_title('Minimum Wage per day : Thai VS USA')
 
-
-
-
-
-# Show the plots
 plt.tight_layout()
 plt.show()
+
